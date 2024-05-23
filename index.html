@@ -36,14 +36,60 @@
                     name="task_name"
                     id="task-name"
                     class="shadow appearance-none border w-full py-2 px-3 test-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    
-                    
                     >
 
                 </div>
+                <div class="mb-4">
+                    <label 
+                    for="task_name"
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    >Nombre de la tarea</label>
+                    <input 
+                    type="text"
+                    name="task_name"
+                    id="task_name"
+                    class="shadow appearance-none border w-full py-2 px-3 test-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Ejemplo: terminar ejercicio de frontend"
+                    type="text"
+                    name="task_description"
+                    placeholder="Ejemplo: desarrollar crud de tareas"
+                    >
+
+                </div>
+                <div clas="flex items-center justify-between">
+                    <button 
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
+                            
+
+                        Agregar tarea
+                    </button>
+
+                </div>
+
             </form>
+            
 
         </div>
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h2 class="block text-gray-700 text-xl font-bold mb-2">
+                    lista de Tareas
+                </h2>
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2">Nombre Tarea</th>
+                            <th class="py-2">Descripcion</th>
+                            <th class="py-2">Aciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasklist">
+                        <!-- las tareas seran mostradas aqui-->
+                    </tbody>
+
+                </table>
+            </div>
     </div>
 </body>
 </html>S
