@@ -36,7 +36,45 @@
                     placeholder="Ejemplo: Terminar ejercicio de frontend"
                     >
                 </div>
+                <div class="mb-4">
+                    <label 
+                    for="task_description"
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                    >Descripción de la tarea</label>
+                    <input 
+                    type="text" 
+                    name="task_description" 
+                    id="task_description"
+                    class="shadow appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Ejemplo: Desarrollar el CRUD de tareas"
+                    >
+                </div>
+                <div class="flex items-center justify-between">
+                    <button 
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    >
+                        Agregar Tarea
+                    </button>
+                </div>
             </form>
+        </div>
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="block text-gray-700 text-xl font-bold mb-2">
+                Lista de Tareas
+            </h2>
+            <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                        <th class="py-2">Nombre Tarea</th>
+                        <th class="py-2">Descripción</th>
+                        <th class="py-2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tasklist">
+                    <!-- Las tareas seran mostradas aqui -->
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
