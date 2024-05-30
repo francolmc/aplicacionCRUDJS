@@ -41,9 +41,11 @@ const showTasks = () => {
     row.innerHTML = `
     <td>${task.name}</td>
     <td>${task.description}</td>
+    <td>${task.completed}</td>
     <td>
       <a href="#" onclick="deleteTask(${index})">Eliminar</a> | 
-      <a href="#" onclick="editTask(${index})">Editar</a>
+      <a href="#" onclick="editTask(${index})">Editar</a> | 
+      <a href="#" onclick="completeTask(${index})">Completar</a>
     </td>
     `;
     tableTaskBody.appendChild(row);
@@ -63,24 +65,46 @@ const deleteTask = (index) => {
 const editTask = (index) => {
   // Cambiar las acciones y estilos de los botones
   let addTaskButton = document.getElementById("add_task_button");
+  let updateTaskButton = document.getElementById("update_task_button");
   addTaskButton.setAttribute("disabled", "");
   addTaskButton.setAttribute("class", DISABLE_BUTTON_STYLE);
-  let updateTaskButton = document.getElementById("update_task_button");
   updateTaskButton.removeAttribute("disabled");
   updateTaskButton.setAttribute("class", ENABLE_BUTTON_STYLE);
-  // Asignar los valores a los cuadros de texto
-  let nameText = document.getElementById("task_name");
-  let descriptionText = document.getElementById("task_description");
-  const task = taskList[index];
-  nameText.value = task.name;
-  descriptionText.value = task.description;
   // Asignar la funcion de actualizar al boton actualizar.
-  updateTaskButton.addEventListener(updateTask(Event, index));
+  updateTaskButton.onclick = (e) => updateTask(e, index);
+  // Asignar los valores a los cuadros de texto
+  let nameInputText = document.getElementById("task_name");
+  let descriptionInputText = document.getElementById("task_description");
+  nameInputText.value = taskList[index].name;
+  descriptionInputText.value = taskList[index].description;
 }
 
-const updateTask = (index) => {
-  debugger;
-  // Tomar los valores de los cuadros de texto y actualizarlos en los de la lista
-  // Cambiar el estilo y comportamiento de los botones
-  // Informar que todo fue exitoso.
+const updateTask = (e, index) => {
+  e.preventDefault();
+  // Modificar o actualizar el registro o la tarea
+  let nameInputText = document.getElementById("task_name");
+  let descriptionInputText = document.getElementById("task_description");
+  taskList[index].name = nameInputText.value;
+  taskList[index].description = descriptionInputText.value;
+  // Actualizar la tabla para mostrar la tarea modificada
+  showTasks();
+  // Intercambiar el estilo y comportamiento de los botones
+  let addTaskButton = document.getElementById("add_task_button");
+  let updateTaskButton = document.getElementById("update_task_button");
+  addTaskButton.removeAttribute("disabled");
+  addTaskButton.setAttribute("class", ENABLE_BUTTON_STYLE);
+  updateTaskButton.setAttribute("disabled", "");
+  updateTaskButton.setAttribute("class", DISABLE_BUTTON_STYLE);
+  // Remover la funcion de actualizar al boton actualizar.
+  updateTaskButton.onclick = null;
+  // Informar que fue actualizado con exito
+  alert("La tarea fue actualizada con exito.");
+}
+
+const completeTask = (index) => {
+  taskList[index].toggleCompletion();
+  showTasks();
+  let cardCompletedTasks = document.getElementById("card_completed_tasks");
+  const completedTaks = taskList.filter((task) => task.completed);
+  cardCompletedTasks.innerHTML=`Total de tareas completadas (${completedTaks.length})`;
 }
